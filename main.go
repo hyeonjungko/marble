@@ -12,7 +12,7 @@ import (
 
 type source struct {
 	ID   string `json:"id"`
-	name string `json:"name"`
+	Name string `json:"name"`
 }
 
 type article struct {
@@ -21,18 +21,18 @@ type article struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	URL         string `json:"url"`
-	PublishedAt string `json:publishedAt`
-	Content     string `json:content`
+	PublishedAt string `json:"publishedAt"`
+	Content     string `json:"content"`
 }
 
 type newsResp struct {
 	Status       string    `json:"status"`
-	TotalResults int       `json:"totalResults`
-	Articles     []article `json:articles`
+	TotalResults int       `json:"totalResults"`
+	Articles     []article `json:"articles"`
 }
 
 func main() {
-	url := "https://newsapi.org/v2/everything?q=korea"
+	url := "https://newsapi.org/v2/everything?q=google"
 	cli := http.Client{
 		Timeout: time.Second,
 	}
@@ -48,7 +48,7 @@ func main() {
 		log.Fatal(err)
 	}
 	key := strings.TrimSpace(string(rawKey))
-	fmt.Println(key)
+	//fmt.Println(key)
 	req.Header.Set("Authorization", string(key))
 
 	// make request
@@ -68,5 +68,13 @@ func main() {
 		log.Fatal(jsonErr)
 	}
 
-	fmt.Println(headlines)
+	// if news.status != "ok", print err and exit
+
+	// DEV ONLY
+	json, err := json.MarshalIndent(headlines, "", "    ")
+	fmt.Println(string(json))
+
+	expurl := headlines.Articles[0].URL
+	exphtml := fetch.fetchArticle(expurl)
+	fmt.Print(exphtml)
 }

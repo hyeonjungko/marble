@@ -10,5 +10,5 @@ The marbling on dry-aged A5 wagyu and Hanwoo inspired me to create a tool that p
 
 ### TODO
   * pull full text from news urls pulled from API
-    * get around robots.txt
+    * maybe create a API server in Python that given a url, return cleaned text?
   * learn which models are the best for sentiment analysis

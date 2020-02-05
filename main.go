@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
+	//"github.com/hyeonjungko/marble/utils"
 )
 
 type source struct {
@@ -75,6 +76,7 @@ func main() {
 	fmt.Println(string(json))
 
 	expurl := headlines.Articles[0].URL
-	exphtml := fetch.fetchArticle(expurl)
-	fmt.Print(exphtml)
+	fmt.Println(expurl)
+	//exphtml := utils.FetchArticle(expurl)
+	//fmt.Print(exphtml)
 }

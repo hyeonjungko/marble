@@ -1,4 +1,4 @@
-package fetch
+package utils
 
 import (
 	"io/ioutil"
@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// Fetches the text of article given url
-func fetchArticle(url string) string {
+// FetchArticle fetches the text of article given url
+func FetchArticle(url string) string {
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
